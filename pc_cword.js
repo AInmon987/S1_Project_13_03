@@ -83,12 +83,33 @@ function formatPuzzle(puzzleLetter) {
     for (var i = 0; i < allLetters.length; i++) {
         allLetters[i].style.backgroundColor = "";
     }
-    acrossClue.style.color = "rgb(96,96,28)";
-    downClue.style.color = "rgb(96,96,28)";
+    acrossClue.style.color = "";
+    downClue.style.color = "";
 
     if (currentLetter.dataset.clueA != undefined) {
+        //referenced to the across clue for the current letter.
         acrossClue = document.getElementById(currentLetter.dataset.clueA);
+        //changing the lettering to blue for the across clues.
         acrossClue.style.color = "blue";
+        //getting all the html elements that has a css seleector with data-clue-a.
+        wordLetters = document.querySelectorAll("[data-clue-a=" + currentLetter.dataset.clueA + "]");
+        // looping through every item in the wordletter and changing the color to a light blue.
+        for (var i = 0; i < wordLetters.length; i++) {
+            wordLetters[i].style.backgroundColor = "rgb(231, 231, 255)";
+        }
+    }
+
+    if (currentLetter.dataset.clueD != undefined) {
+        //referenced to the down clue for the current letter.
+        downClue = document.getElementById(currentLetter.dataset.clueD);
+        //changing the lettering to red for the down clues.
+        downClue.style.color = "red";
+        //getting all the html elements that has a css seleector with data-clue-d.
+        wordLetters = document.querySelectorAll("[data-clue-D=" + currentLetter.dataset.clueD + "]");
+        // looping through every item in the wordletter and changing the color to a light red.
+        for (var i = 0; i < wordLetters.length; i++) {
+            wordLetters[i].style.backgroundColor = "rgb(255, 231, 231)";
+        }
     }
 }
 
